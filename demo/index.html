@@ -1,79 +1,146 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GenLayer Intelligent Core Spinner</title>
 
 <link rel="stylesheet" href="../src/spinner.css">
 
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:Inter,system-ui,sans-serif;
-  background:#07111f;
-  color:#fff;
-  display:grid;
-  place-items:center;
-  padding:32px;
+* {
+  box-sizing: border-box;
 }
-.container{max-width:920px;width:100%}
-h1{
-  text-align:center;
-  margin:0;
-  font-size:42px;
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #07111f;
+  color: white;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 45px 20px;
 }
-p{
-  text-align:center;
-  color:#a9b7ca;
-  margin:14px auto 40px;
-  max-width:640px;
-  line-height:1.7;
+
+.container {
+  max-width: 1100px;
+  margin: auto;
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
+
+h1 {
+  text-align: center;
+  font-size: 42px;
+  margin: 0 0 12px;
 }
-.card{
-  border-radius:22px;
-  padding:28px;
-  text-align:center;
-  position:relative;
+
+.subtitle {
+  text-align: center;
+  color: #a9bed5;
+  max-width: 720px;
+  margin: 0 auto 42px;
+  line-height: 1.6;
 }
-.dark{
-  background:#050b15;
-  border:1px solid #18324f;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
-.light{
-  background:#f7faff;
-  color:#10213b;
+
+.card {
+  min-height: 300px;
+  border-radius: 24px;
+  padding: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.label{
-  position:absolute;
-  top:16px;
-  left:18px;
-  font-size:12px;
-  font-weight:700;
-  opacity:.7;
+
+.dark {
+  background: #050b15;
+  border: 1px solid #17324c;
 }
-.demo-spinner{
-  width:96px;
-  height:96px;
-  margin:20px auto;
+
+.light {
+  background: #f7faff;
+  color: #14233b;
 }
-.caption{
-  font-size:14px;
-  opacity:.7;
+
+.label {
+  font-size: 14px;
+  font-weight: 700;
 }
-.footer{
-  text-align:center;
-  margin-top:34px;
-  color:#7f92aa;
-  font-size:14px;
+
+.center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 5px;
+  opacity: .75;
+}
+
+/* Size showcase */
+
+.size-section {
+  margin-top: 55px;
+}
+
+.size-section h2 {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.sizes {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 55px;
+  flex-wrap: wrap;
+}
+
+.size-item {
+  text-align: center;
+  min-width: 80px;
+}
+
+.size-box {
+  height: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.size-label {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #a9bed5;
+}
+
+.footer {
+  text-align: center;
+  color: #7890aa;
+  margin-top: 50px;
+  font-size: 13px;
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sizes {
+    gap: 30px;
+  }
 }
 </style>
 </head>
@@ -82,106 +149,108 @@ p{
 
 <div class="container">
 
-<h1>GenLayer Intelligent Core Spinner</h1>
+  <h1>GenLayer Intelligent Core Spinner</h1>
 
-<p>
-A premium SVG + CSS loading spinner designed for GenLayer Portal loading
-states. Lightweight, infinitely looping and responsive.
-</p>
+  <p class="subtitle">
+    A smooth, lightweight and web-ready loading spinner designed for
+    GenLayer Portal loading states.
+  </p>
 
-<div class="grid">
+  <!-- Dark / Light -->
+  <div class="grid">
 
-<div class="card dark">
-<div class="label">DARK THEME</div>
+    <div class="card dark">
+      <div class="label">Dark Theme</div>
 
-<svg class="gl-spinner gl-spinner--dark demo-spinner" viewBox="0 0 120 120">
-  <defs>
-    <linearGradient id="gl-blue-purple" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#18C8FF"/>
-      <stop offset="55%" stop-color="#3E7BFF"/>
-      <stop offset="100%" stop-color="#9B5CFF"/>
-    </linearGradient>
-    <filter id="gl-glow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="2.2" result="b"/>
-      <feMerge>
-        <feMergeNode in="b"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
+      <div class="center">
+        <img
+          class="gl-spinner gl-spinner--dark gl-spinner--128"
+          src="../src/spinner.svg"
+          alt="GenLayer dark theme loading spinner"
+        >
+      </div>
 
-  <g class="gl-orbit-system">
-    <circle class="gl-ring gl-ring-a" cx="60" cy="60" r="39"/>
-    <circle class="gl-ring gl-ring-b" cx="60" cy="60" r="31"/>
-    <circle class="gl-ring gl-ring-c" cx="60" cy="60" r="23"/>
-  </g>
+      <div class="status">
+        Smooth Infinite Orbit
+      </div>
+    </div>
 
-  <g class="gl-particles" filter="url(#gl-glow)">
-    <circle cx="60" cy="9" r="2.7"/>
-    <circle cx="103" cy="60" r="2.5"/>
-    <circle cx="60" cy="111" r="2.7"/>
-    <circle cx="17" cy="60" r="2.5"/>
-    <circle cx="87" cy="33" r="2.1"/>
-    <circle cx="33" cy="87" r="2.1"/>
-  </g>
+    <div class="card light">
+      <div class="label">Light Theme</div>
 
-  <g class="gl-core" filter="url(#gl-glow)">
-    <path class="gl-core-shape" d="M60 30 L88 79 H32 Z"/>
-    <path class="gl-core-cut" d="M60 45 L69 62 H51 Z"/>
-  </g>
-</svg>
+      <div class="center">
+        <img
+          class="gl-spinner gl-spinner--light gl-spinner--128"
+          src="../src/spinner.svg"
+          alt="GenLayer light theme loading spinner"
+        >
+      </div>
 
-<div class="caption">Smooth Infinite Orbit</div>
-</div>
+      <div class="status">
+        Portal Ready UI
+      </div>
+    </div>
 
-<div class="card light">
-<div class="label">LIGHT THEME</div>
+  </div>
 
-<svg class="gl-spinner gl-spinner--light demo-spinner" viewBox="0 0 120 120">
-  <defs>
-    <linearGradient id="gl-blue-purple-2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#147CFF"/>
-      <stop offset="55%" stop-color="#4D7CFF"/>
-      <stop offset="100%" stop-color="#7C3AED"/>
-    </linearGradient>
-    <filter id="gl-glow-2" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="2.2" result="b"/>
-      <feMerge>
-        <feMergeNode in="b"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
+  <!-- Size variants -->
+  <section class="size-section">
 
-  <g class="gl-orbit-system">
-    <circle class="gl-ring gl-ring-a" cx="60" cy="60" r="39" stroke="url(#gl-blue-purple-2)"/>
-    <circle class="gl-ring gl-ring-b" cx="60" cy="60" r="31" stroke="url(#gl-blue-purple-2)"/>
-    <circle class="gl-ring gl-ring-c" cx="60" cy="60" r="23" stroke="url(#gl-blue-purple-2)"/>
-  </g>
+    <h2>Size Variants</h2>
 
-  <g class="gl-particles" filter="url(#gl-glow-2)">
-    <circle cx="60" cy="9" r="2.7"/>
-    <circle cx="103" cy="60" r="2.5"/>
-    <circle cx="60" cy="111" r="2.7"/>
-    <circle cx="17" cy="60" r="2.5"/>
-    <circle cx="87" cy="33" r="2.1"/>
-    <circle cx="33" cy="87" r="2.1"/>
-  </g>
+    <div class="sizes">
 
-  <g class="gl-core" filter="url(#gl-glow-2)">
-    <path d="M60 30 L88 79 H32 Z" fill="url(#gl-blue-purple-2)"/>
-    <path d="M60 45 L69 62 H51 Z" fill="#F7FAFF"/>
-  </g>
-</svg>
+      <div class="size-item">
+        <div class="size-box">
+          <img
+            class="gl-spinner gl-spinner--dark gl-spinner--24"
+            src="../src/spinner.svg"
+            alt="24px spinner"
+          >
+        </div>
+        <div class="size-label">24px</div>
+      </div>
 
-<div class="caption">Portal Ready UI</div>
-</div>
+      <div class="size-item">
+        <div class="size-box">
+          <img
+            class="gl-spinner gl-spinner--dark gl-spinner--32"
+            src="../src/spinner.svg"
+            alt="32px spinner"
+          >
+        </div>
+        <div class="size-label">32px</div>
+      </div>
 
-</div>
+      <div class="size-item">
+        <div class="size-box">
+          <img
+            class="gl-spinner gl-spinner--dark gl-spinner--64"
+            src="../src/spinner.svg"
+            alt="64px spinner"
+          >
+        </div>
+        <div class="size-label">64px</div>
+      </div>
 
-<div class="footer">
-Built as an original community contribution for GenLayer • SVG + CSS • Responsive
-</div>
+      <div class="size-item">
+        <div class="size-box">
+          <img
+            class="gl-spinner gl-spinner--dark gl-spinner--128"
+            src="../src/spinner.svg"
+            alt="128px spinner"
+          >
+        </div>
+        <div class="size-label">128px</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="footer">
+    Original community contribution for GenLayer • SVG + CSS • Responsive
+  </div>
 
 </div>
 
