@@ -1,21 +1,73 @@
-<svg class="gl-spinner" viewBox="0 0 120 120" role="img" aria-label="Loading">
+<svg class="gl-spinner" viewBox="0 0 120 120" role="img" aria-label="GenLayer loading">
   <defs>
-    <linearGradient id="glGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#18B6FF"/>
-      <stop offset="55%" stop-color="#4D7CFF"/>
-      <stop offset="100%" stop-color="#8B5CF6"/>
+    <linearGradient id="gl-blue-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#18C8FF"/>
+      <stop offset="55%" stop-color="#3E7BFF"/>
+      <stop offset="100%" stop-color="#9B5CFF"/>
     </linearGradient>
+
+    <filter id="gl-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <circle class="gl-orbit gl-orbit-1" cx="60" cy="60" r="43"/>
-  <circle class="gl-orbit gl-orbit-2" cx="60" cy="60" r="34"/>
-  <g class="gl-nodes">
-    <circle cx="60" cy="10" r="4"/>
-    <circle cx="103" cy="60" r="4"/>
-    <circle cx="60" cy="110" r="4"/>
-    <circle cx="17" cy="60" r="4"/>
+
+  <!-- Rotating orbital rings -->
+  <g class="gl-orbit-system">
+
+    <circle
+      class="gl-ring gl-ring-a"
+      cx="60"
+      cy="60"
+      r="39"
+    />
+
+    <circle
+      class="gl-ring gl-ring-b"
+      cx="60"
+      cy="60"
+      r="31"
+    />
+
+    <circle
+      class="gl-ring gl-ring-c"
+      cx="60"
+      cy="60"
+      r="23"
+    />
+
   </g>
-  <g class="gl-core">
-    <path d="M60 29 L88 78 H32 Z"/>
-    <path d="M60 45 L69 62 H51 Z"/>
+
+  <!-- Glowing orbital nodes -->
+  <g class="gl-particles" filter="url(#gl-glow)">
+
+    <circle cx="60" cy="9" r="2.7"/>
+    <circle cx="103" cy="60" r="2.5"/>
+    <circle cx="60" cy="111" r="2.7"/>
+    <circle cx="17" cy="60" r="2.5"/>
+
+    <circle cx="87" cy="33" r="2.1"/>
+    <circle cx="33" cy="87" r="2.1"/>
+
   </g>
+
+  <!-- Intelligent central core -->
+  <g class="gl-core" filter="url(#gl-glow)">
+
+    <path
+      class="gl-core-shape"
+      d="M60 30 L88 79 H32 Z"
+    />
+
+    <!-- Inner cut -->
+    <path
+      class="gl-core-cut"
+      d="M60 45 L69 62 H51 Z"
+    />
+
+  </g>
+
 </svg>
