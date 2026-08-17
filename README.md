@@ -1,29 +1,65 @@
 # GenLayer Intelligent Core Spinner
 
-An original, web-ready loading spinner concept for the GenLayer Portal.
+A lightweight, responsive and web-ready loading spinner created as an original community contribution for GenLayer.
 
-## Concept
-The spinner represents an intelligent network core: a geometric GenLayer-inspired center is surrounded by rotating orbital paths and nodes. The motion is intentionally smooth and subtle for repeated loading states.
+The design uses an intelligent central core, orbital rings and glowing nodes to represent a dynamic network of intelligent computation.
 
-## Features
-- Pure SVG + CSS animation
-- Infinite smooth loop
-- Light and dark theme variants
-- Responsive from small UI sizes to large loading states
-- No external dependencies
-- `prefers-reduced-motion` support
-- Easy to embed in existing web interfaces
+## ✨ Features
 
-## Files
-- `src/spinner.svg` — standalone SVG asset
-- `src/spinner.css` — animation and sizing styles
-- `demo/index.html` — live demo page
+- 🔄 Smooth infinite orbital animation
+- 🔵 Blue and purple GenLayer-inspired visual treatment
+- 🌙 Dark theme
+- ☀️ Light theme
+- 📏 24px, 32px, 64px and 128px size variants
+- 📱 Responsive demo layout
+- ♿ `prefers-reduced-motion` accessibility support
+- 🧩 SVG + CSS implementation
+- ⚡ No external dependencies
+- 🌐 Works directly in modern web browsers
 
-## Basic usage
-Copy `src/spinner.svg` into your page and include `src/spinner.css`. Adjust `.gl-spinner` width/height for the desired size.
+## 🚀 Live Demo
 
-## Accessibility
-The SVG includes a loading label and the animation is disabled for users who request reduced motion.
+**Live Demo:**
 
-## Contribution
-Created as an original community contribution for the GenLayer Spinner mission.
+https://yanagupta777.github.io/genlayer-spinner/demo/
+
+The demo includes:
+
+- Dark Theme
+- Light Theme
+- Multiple spinner sizes
+- Smooth infinite animation
+- Responsive presentation
+
+## 🎨 Design Concept
+
+The spinner is designed around three visual elements:
+
+### Intelligent Core
+
+The central geometric core represents intelligent computation and decision-making.
+
+### Orbital Network
+
+The surrounding rings represent interconnected network activity and continuous processing.
+
+### Glowing Nodes
+
+The orbital nodes represent active participants and activity within the network.
+
+The blue-to-purple gradient provides a futuristic visual language suitable for GenLayer-inspired interfaces.
+
+## 📦 Project Structure
+
+```text
+genlayer-spinner/
+│
+├── demo/
+│   └── index.html
+│
+├── src/
+│   ├── spinner.css
+│   └── spinner.svg
+│
+├── README.md
+└── LICENSE
