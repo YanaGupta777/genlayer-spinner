@@ -1,65 +1,154 @@
-/* GenLayer Intelligent Core Spinner
-   Original community concept: orbital nodes + intelligent core.
-   No external dependencies. Scales from 24px to 128px+. */
+/* GenLayer Intelligent Core Spinner — Premium Orbital Variant */
 
 .gl-spinner {
   width: 64px;
   height: 64px;
   display: block;
   overflow: visible;
+
   --gl-speed: 1.8s;
-  --gl-accent: #18B6FF;
-  --gl-accent-2: #8B5CF6;
+  --gl-cyan: #18C8FF;
+  --gl-blue: #3E7BFF;
+  --gl-purple: #9B5CFF;
 }
 
-.gl-orbit {
+/* Main orbital system */
+.gl-spinner .gl-orbit-system {
+  transform-origin: 60px 60px;
+  animation: gl-spin var(--gl-speed) linear infinite;
+}
+
+.gl-spinner .gl-ring {
   fill: none;
-  stroke: url(#glGradient);
-  stroke-linecap: round;
+  stroke: url(#gl-blue-purple);
+  vector-effect: non-scaling-stroke;
   transform-origin: 60px 60px;
 }
 
-.gl-orbit-1 {
-  stroke-width: 2.4;
-  stroke-dasharray: 34 12 8 12;
-  animation: gl-orbit var(--gl-speed) linear infinite;
+.gl-spinner .gl-ring-a {
+  stroke-width: 1.8;
+  stroke-dasharray: 44 9 12 10;
 }
 
-.gl-orbit-2 {
-  stroke-width: 1.4;
-  stroke-dasharray: 5 10;
-  opacity: .55;
-  animation: gl-orbit-reverse calc(var(--gl-speed) * 1.35) linear infinite;
+.gl-spinner .gl-ring-b {
+  stroke-width: 1.25;
+  opacity: 0.7;
+  stroke-dasharray: 4 8 24 10;
+  animation: gl-counter-spin 2.45s linear infinite;
 }
 
-.gl-nodes {
-  fill: var(--gl-accent);
-  filter: drop-shadow(0 0 4px var(--gl-accent));
+.gl-spinner .gl-ring-c {
+  stroke-width: 1;
+  opacity: 0.38;
+  stroke-dasharray: 2 8;
+  animation: gl-spin 3.2s linear infinite;
+}
+
+/* Glowing particles */
+.gl-spinner .gl-particles {
+  fill: var(--gl-cyan);
   transform-origin: 60px 60px;
-  animation: gl-nodes calc(var(--gl-speed) * 1.1) ease-in-out infinite;
+  animation: gl-particle-orbit 2.4s ease-in-out infinite;
 }
 
-.gl-core {
-  fill: url(#glGradient);
+.gl-spinner .gl-particles circle:nth-child(2n) {
+  fill: var(--gl-purple);
+}
+
+/* Central GenLayer-inspired core */
+.gl-spinner .gl-core {
   transform-origin: 60px 60px;
-  animation: gl-core-pulse 1.5s ease-in-out infinite;
-  filter: drop-shadow(0 0 5px rgba(24,182,255,.45));
+  animation: gl-core-pulse 1.45s ease-in-out infinite;
 }
 
-@keyframes gl-orbit { to { transform: rotate(360deg); } }
-@keyframes gl-orbit-reverse { to { transform: rotate(-360deg); } }
-@keyframes gl-nodes {
-  0%,100% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.035); }
+.gl-spinner .gl-core-shape {
+  fill: url(#gl-blue-purple);
 }
+
+.gl-spinner .gl-core-cut {
+  fill: #07111f;
+}
+
+/* Light theme */
+.gl-spinner--light .gl-core-cut {
+  fill: #f7faff;
+}
+
+.gl-spinner--light .gl-particles {
+  fill: #147CFF;
+}
+
+.gl-spinner--light .gl-particles circle:nth-child(2n) {
+  fill: #7C3AED;
+}
+
+/* Rotation */
+@keyframes gl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gl-counter-spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Particle movement */
+@keyframes gl-particle-orbit {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.04);
+  }
+}
+
+/* Core breathing effect */
 @keyframes gl-core-pulse {
-  0%,100% { transform: scale(.94); opacity: .82; }
-  50% { transform: scale(1); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(0.93);
+    opacity: 0.84;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .gl-orbit-1, .gl-orbit-2, .gl-nodes, .gl-core { animation: none; }
+  .gl-orbit-system,
+  .gl-ring-b,
+  .gl-ring-c,
+  .gl-particles,
+  .gl-core {
+    animation: none;
+  }
 }
 
-.gl-spinner--light { --gl-accent: #147CFF; }
-.gl-spinner--dark { --gl-accent: #22C7FF; }
+/* Preset sizes */
+.gl-spinner--24 {
+  width: 24px;
+  height: 24px;
+}
+
+.gl-spinner--32 {
+  width: 32px;
+  height: 32px;
+}
+
+.gl-spinner--64 {
+  width: 64px;
+  height: 64px;
+}
+
+.gl-spinner--128 {
+  width: 128px;
+  height: 128px;
+}
