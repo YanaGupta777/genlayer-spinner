@@ -6,9 +6,24 @@
 
   <title>GenLayer Intelligent Core Spinner</title>
 
+  <meta
+    name="description"
+    content="A smooth, lightweight and web-ready GenLayer loading spinner with dark, light and multiple size variants."
+  >
+
   <link rel="stylesheet" href="../src/spinner.css">
 
   <style>
+    :root {
+      --bg: #06101f;
+      --card: #050b16;
+      --card-border: #193a5b;
+      --text: #ffffff;
+      --muted: #9fb3cf;
+      --blue: #18c8ff;
+      --purple: #9b5cff;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -16,567 +31,923 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #07111f;
-      color: #ffffff;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
     }
 
-    .container {
-      width: min(1120px, 92%);
+    .page {
+      width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 55px 0 70px;
+      padding: 52px 0 70px;
     }
 
-    h1 {
+    /* Header */
+
+    .hero {
       text-align: center;
-      margin: 0 0 14px;
-      font-size: 44px;
-      line-height: 1.15;
-      font-weight: 700;
+      margin-bottom: 42px;
     }
 
-    .subtitle {
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -1.8px;
+    }
+
+    .hero p {
       max-width: 760px;
-      margin: 0 auto 48px;
-      text-align: center;
-      color: #a9c9ee;
+      margin: 20px auto 0;
+      color: #b6c8df;
       font-size: 17px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
-    /* =========================
-       THEME PREVIEWS
-       ========================= */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 7px 13px;
+      border: 1px solid #21486d;
+      border-radius: 999px;
+      color: #8edfff;
+      background: rgba(24, 200, 255, 0.06);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Main themes */
 
     .themes {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
     }
 
     .theme-card {
-      min-height: 285px;
-      border-radius: 22px;
-      padding: 28px;
+      min-height: 330px;
+      padding: 25px;
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
     }
 
-    .dark-card {
-      background: #050b15;
-      border: 1px solid #17466d;
+    .theme-card.dark {
+      background:
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(24, 200, 255, 0.06),
+          transparent 45%
+        ),
+        var(--card);
     }
 
-    .light-card {
+    .theme-card.light {
       background: #f5f8ff;
-      border: 1px solid #dbe5f5;
-      color: #24344d;
+      color: #14233a;
+      border-color: #d8e1ef;
     }
 
     .theme-title {
-      width: 100%;
       font-size: 14px;
       font-weight: 700;
-      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .theme-description {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .light .theme-description {
+      color: #60708a;
     }
 
     .spinner-stage {
       flex: 1;
-      width: 100%;
+      min-height: 220px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 25px;
     }
 
-    .caption {
-      font-size: 15px;
-      color: #aeb9c9;
-    }
-
-    .light-card .caption {
-      color: #64748b;
-    }
-
-
-    /* =========================
-       INLINE SPINNER
-       ========================= */
-
-    .gl-spinner {
-      width: 64px;
-      height: 64px;
-      display: block;
-      overflow: visible;
-
-      --gl-accent: #18c8ff;
-      --gl-accent-2: #9b5cff;
-      --gl-background: #050b15;
-    }
-
-    .light-card .gl-spinner {
-      --gl-accent: #147cff;
-      --gl-accent-2: #7b5cff;
-      --gl-background: #f5f8ff;
-    }
-
-
-    /* =========================
-       SIZE VARIANTS
-       ========================= */
-
-    .sizes-title {
-      margin: 58px 0 32px;
+    .loading-label {
       text-align: center;
-      font-size: 28px;
+      margin-top: 8px;
+      color: #aabbd0;
+      font-size: 14px;
+      letter-spacing: 0.2px;
     }
 
-    .sizes {
+    .light .loading-label {
+      color: #596b83;
+    }
+
+    /* Size variants */
+
+    .variants {
+      margin-top: 38px;
+      padding: 34px 30px 38px;
+      border: 1px solid #183754;
+      border-radius: 24px;
+      background: #071321;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 0;
+      font-size: 25px;
+      font-weight: 750;
+    }
+
+    .section-description {
+      text-align: center;
+      margin: 10px auto 30px;
+      color: #91a7c1;
+      font-size: 14px;
+    }
+
+    .variant-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
+      gap: 18px;
     }
 
-    .size-card {
-      min-height: 200px;
-      padding: 24px 12px 18px;
+    .variant {
+      min-height: 190px;
       border-radius: 18px;
-      border: 1px solid #183b5d;
-      background: #0b1728;
-
+      border: 1px solid #183754;
+      background: #050d18;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-    }
-
-    .size-preview {
-      height: 130px;
-      width: 100%;
-
-      display: flex;
-      align-items: center;
       justify-content: center;
+      gap: 22px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .size-label {
-      color: #a9c9ee;
-      font-size: 14px;
+    .variant:hover {
+      transform: translateY(-3px);
+      border-color: #28618d;
+    }
+
+    .variant-name {
+      color: #9fb3cc;
+      font-size: 13px;
       font-weight: 600;
     }
 
+    /* Integration */
 
-    /* =========================
-       FOOTER
-       ========================= */
-
-    .footer {
-      margin-top: 48px;
-      text-align: center;
-      color: #7899bd;
-      font-size: 14px;
+    .integration {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
     }
 
+    .info-card {
+      border: 1px solid #183754;
+      border-radius: 20px;
+      background: #071321;
+      padding: 25px;
+    }
 
-    /* =========================
-       RESPONSIVE
-       ========================= */
+    .info-card h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
 
-    @media (max-width: 760px) {
+    .info-card p {
+      margin: 0;
+      color: #91a7c1;
+      font-size: 14px;
+      line-height: 1.7;
+    }
 
-      h1 {
-        font-size: 32px;
-      }
+    .code-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      background: #030913;
+      border: 1px solid #142b42;
+      overflow-x: auto;
+    }
 
-      .themes {
+    .code-box code {
+      color: #8edfff;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      white-space: pre;
+    }
+
+    /* Footer */
+
+    footer {
+      text-align: center;
+      margin-top: 42px;
+      color: #7188a5;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: #9fb9d6;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 800px) {
+      .themes,
+      .integration {
         grid-template-columns: 1fr;
       }
 
-      .sizes {
+      .variant-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-    }
 
-    @media (max-width: 450px) {
-
-      .container {
-        width: 90%;
+      .page {
+        width: min(100% - 24px, 700px);
         padding-top: 35px;
       }
+    }
 
-      h1 {
-        font-size: 28px;
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 34px;
       }
 
-      .sizes {
-        grid-template-columns: 1fr;
+      .hero p {
+        font-size: 15px;
+      }
+
+      .theme-card {
+        min-height: 290px;
+      }
+
+      .variant-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .variants {
+        padding: 25px 15px;
       }
     }
   </style>
 </head>
 
-
 <body>
 
-  <main class="container">
+  <main class="page">
 
-    <h1>
-      GenLayer Intelligent Core Spinner
-    </h1>
+    <!-- HERO -->
 
-    <p class="subtitle">
-      A smooth, lightweight and web-ready loading spinner designed
-      for GenLayer Portal loading states.
-    </p>
+    <header class="hero">
+
+      <h1>GenLayer Intelligent Core Spinner</h1>
+
+      <p>
+        A smooth, lightweight and web-ready loading spinner designed
+        for GenLayer Portal loading states.
+      </p>
+
+      <div class="badge">
+        ✦ Original Community Contribution
+      </div>
+
+    </header>
 
 
-    <!-- =====================================
-         DARK + LIGHT THEME
-         ===================================== -->
+    <!-- DARK + LIGHT THEMES -->
 
     <section class="themes">
 
+      <!-- DARK -->
 
-      <!-- DARK THEME -->
-
-      <div class="theme-card dark-card">
+      <article class="theme-card dark">
 
         <div class="theme-title">
           Dark Theme
         </div>
 
+        <p class="theme-description">
+          Glowing blue and purple orbital animation for dark interfaces.
+        </p>
+
         <div class="spinner-stage">
 
-          <svg
-            class="gl-spinner"
-            viewBox="0 0 120 120"
-            role="img"
-            aria-label="GenLayer dark theme loading spinner"
-          >
+          <div style="text-align:center;">
 
-            <!-- Orbit rings -->
+            <svg
+              class="gl-spinner gl-spinner--dark"
+              width="128"
+              height="128"
+              viewBox="0 0 120 120"
+              role="img"
+              aria-label="GenLayer dark theme loading spinner"
+            >
 
-            <circle
-              class="gl-orbit gl-orbit-a"
-              cx="60"
-              cy="60"
-              r="39"
-            />
+              <defs>
 
-            <circle
-              class="gl-orbit gl-orbit-b"
-              cx="60"
-              cy="60"
-              r="31"
-            />
+                <linearGradient
+                  id="darkGradient"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="1"
+                >
+                  <stop offset="0%" stop-color="#18C8FF"/>
+                  <stop offset="55%" stop-color="#3E7BFF"/>
+                  <stop offset="100%" stop-color="#9B5CFF"/>
+                </linearGradient>
 
-            <circle
-              class="gl-orbit gl-orbit-c"
-              cx="60"
-              cy="60"
-              r="23"
-            />
+                <filter
+                  id="darkGlow"
+                  x="-80%"
+                  y="-80%"
+                  width="260%"
+                  height="260%"
+                >
+                  <feGaussianBlur
+                    stdDeviation="2.2"
+                    result="blur"
+                  />
+
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+
+                </filter>
+
+              </defs>
 
 
-            <!-- Orbital nodes -->
+              <!-- Orbit -->
 
-            <g class="gl-particles">
+              <g
+                class="gl-orbit-system"
+                style="transform-origin:60px 60px;"
+              >
 
-              <circle cx="60" cy="9" r="2.7" />
-              <circle cx="103" cy="60" r="2.5" />
-              <circle cx="60" cy="111" r="2.7" />
-              <circle cx="17" cy="60" r="2.5" />
-              <circle cx="87" cy="33" r="2.1" />
-              <circle cx="33" cy="87" r="2.1" />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="39"
+                  fill="none"
+                  stroke="url(#darkGradient)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-dasharray="34 12 8 12"
+                  style="
+                    animation: gl-orbit 1.8s linear infinite;
+                    transform-origin:60px 60px;
+                  "
+                />
 
-            </g>
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="31"
+                  fill="none"
+                  stroke="url(#darkGradient)"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-dasharray="5 10"
+                  opacity=".55"
+                  style="
+                    animation: gl-orbit-reverse 2.43s linear infinite;
+                    transform-origin:60px 60px;
+                  "
+                />
+
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="23"
+                  fill="none"
+                  stroke="#18C8FF"
+                  stroke-width="1"
+                  opacity=".35"
+                  stroke-dasharray="2 8"
+                />
+
+              </g>
 
 
-            <!-- Intelligent core -->
+              <!-- Nodes -->
 
-            <g class="gl-core">
+              <g
+                fill="#18C8FF"
+                filter="url(#darkGlow)"
+                style="
+                  animation: gl-nodes 1.98s ease-in-out infinite;
+                  transform-origin:60px 60px;
+                "
+              >
 
-              <path
-                class="gl-core-shape"
-                d="M60 30 L88 79 H32 Z"
-              />
+                <circle cx="60" cy="9" r="2.7"/>
+                <circle cx="103" cy="60" r="2.5"/>
+                <circle cx="60" cy="111" r="2.7"/>
+                <circle cx="17" cy="60" r="2.5"/>
+                <circle cx="87" cy="33" r="2.1"/>
+                <circle cx="33" cy="87" r="2.1"/>
 
-              <path
-                class="gl-core-cut"
-                d="M60 45 L69 62 H51 Z"
-              />
+              </g>
 
-            </g>
 
-          </svg>
+              <!-- GenLayer Core -->
+
+              <g
+                filter="url(#darkGlow)"
+                style="
+                  animation: gl-core-pulse 1.5s ease-in-out infinite;
+                  transform-origin:60px 60px;
+                "
+              >
+
+                <path
+                  d="M60 30 L88 79 H32 Z"
+                  fill="url(#darkGradient)"
+                />
+
+                <path
+                  d="M60 45 L69 62 H51 Z"
+                  fill="#06101f"
+                />
+
+              </g>
+
+            </svg>
+
+            <div class="loading-label">
+              Smooth Infinite Orbit
+            </div>
+
+          </div>
 
         </div>
 
-        <div class="caption">
-          Smooth Infinite Orbit
-        </div>
-
-      </div>
+      </article>
 
 
+      <!-- LIGHT -->
 
-      <!-- LIGHT THEME -->
-
-      <div class="theme-card light-card">
+      <article class="theme-card light">
 
         <div class="theme-title">
           Light Theme
         </div>
 
+        <p class="theme-description">
+          A clean high-contrast version designed for light interfaces.
+        </p>
+
         <div class="spinner-stage">
 
-          <svg
-            class="gl-spinner"
-            viewBox="0 0 120 120"
-            role="img"
-            aria-label="GenLayer light theme loading spinner"
-          >
+          <div style="text-align:center;">
 
-            <circle
-              class="gl-orbit gl-orbit-a"
-              cx="60"
-              cy="60"
-              r="39"
-            />
+            <svg
+              class="gl-spinner gl-spinner--light"
+              width="128"
+              height="128"
+              viewBox="0 0 120 120"
+              role="img"
+              aria-label="GenLayer light theme loading spinner"
+            >
 
-            <circle
-              class="gl-orbit gl-orbit-b"
-              cx="60"
-              cy="60"
-              r="31"
-            />
+              <defs>
 
-            <circle
-              class="gl-orbit gl-orbit-c"
-              cx="60"
-              cy="60"
-              r="23"
-            />
+                <linearGradient
+                  id="lightGradient"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="1"
+                >
+                  <stop offset="0%" stop-color="#147CFF"/>
+                  <stop offset="55%" stop-color="#3E7BFF"/>
+                  <stop offset="100%" stop-color="#8B5CFF"/>
+                </linearGradient>
 
-            <g class="gl-particles">
+                <filter
+                  id="lightGlow"
+                  x="-80%"
+                  y="-80%"
+                  width="260%"
+                  height="260%"
+                >
 
-              <circle cx="60" cy="9" r="2.7" />
-              <circle cx="103" cy="60" r="2.5" />
-              <circle cx="60" cy="111" r="2.7" />
-              <circle cx="17" cy="60" r="2.5" />
-              <circle cx="87" cy="33" r="2.1" />
-              <circle cx="33" cy="87" r="2.1" />
+                  <feGaussianBlur
+                    stdDeviation="2"
+                    result="blur"
+                  />
 
-            </g>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
 
-            <g class="gl-core">
+                </filter>
 
-              <path
-                class="gl-core-shape"
-                d="M60 30 L88 79 H32 Z"
-              />
+              </defs>
 
-              <path
-                class="gl-core-cut"
-                d="M60 45 L69 62 H51 Z"
-              />
 
-            </g>
+              <g>
 
-          </svg>
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="39"
+                  fill="none"
+                  stroke="url(#lightGradient)"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-dasharray="34 12 8 12"
+                  style="
+                    animation: gl-orbit 1.8s linear infinite;
+                    transform-origin:60px 60px;
+                  "
+                />
+
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="31"
+                  fill="none"
+                  stroke="url(#lightGradient)"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-dasharray="5 10"
+                  opacity=".5"
+                  style="
+                    animation: gl-orbit-reverse 2.43s linear infinite;
+                    transform-origin:60px 60px;
+                  "
+                />
+
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="23"
+                  fill="none"
+                  stroke="#147CFF"
+                  stroke-width="1"
+                  opacity=".25"
+                  stroke-dasharray="2 8"
+                />
+
+              </g>
+
+
+              <g
+                fill="#147CFF"
+                filter="url(#lightGlow)"
+                style="
+                  animation: gl-nodes 1.98s ease-in-out infinite;
+                  transform-origin:60px 60px;
+                "
+              >
+
+                <circle cx="60" cy="9" r="2.7"/>
+                <circle cx="103" cy="60" r="2.5"/>
+                <circle cx="60" cy="111" r="2.7"/>
+                <circle cx="17" cy="60" r="2.5"/>
+                <circle cx="87" cy="33" r="2.1"/>
+                <circle cx="33" cy="87" r="2.1"/>
+
+              </g>
+
+
+              <g
+                filter="url(#lightGlow)"
+                style="
+                  animation: gl-core-pulse 1.5s ease-in-out infinite;
+                  transform-origin:60px 60px;
+                "
+              >
+
+                <path
+                  d="M60 30 L88 79 H32 Z"
+                  fill="url(#lightGradient)"
+                />
+
+                <path
+                  d="M60 45 L69 62 H51 Z"
+                  fill="#F5F8FF"
+                />
+
+              </g>
+
+            </svg>
+
+            <div class="loading-label">
+              Portal Ready UI
+            </div>
+
+          </div>
 
         </div>
 
-        <div class="caption">
-          Portal Ready UI
-        </div>
-
-      </div>
+      </article>
 
     </section>
 
 
+    <!-- SIZE VARIANTS -->
 
-    <!-- =====================================
-         SIZE VARIANTS
-         ===================================== -->
+    <section class="variants">
 
-    <h2 class="sizes-title">
-      Size Variants
-    </h2>
+      <h2 class="section-title">
+        Size Variants
+      </h2>
+
+      <p class="section-description">
+        Optimized for different interface sizes from compact loaders
+        to larger loading states.
+      </p>
 
 
-    <section class="sizes">
+      <div class="variant-grid">
 
 
-      <!-- 24px -->
+        <!-- 24px -->
 
-      <div class="size-card">
-
-        <div class="size-preview">
+        <div class="variant">
 
           <svg
-            class="gl-spinner"
             width="24"
             height="24"
             viewBox="0 0 120 120"
-            role="img"
-            aria-label="24px GenLayer spinner"
+            aria-label="24px spinner"
           >
 
-            <circle class="gl-orbit gl-orbit-a" cx="60" cy="60" r="39" />
-            <circle class="gl-orbit gl-orbit-b" cx="60" cy="60" r="31" />
-            <circle class="gl-orbit gl-orbit-c" cx="60" cy="60" r="23" />
+            <defs>
+              <linearGradient id="g24">
+                <stop offset="0%" stop-color="#18C8FF"/>
+                <stop offset="100%" stop-color="#9B5CFF"/>
+              </linearGradient>
+            </defs>
 
-            <g class="gl-particles">
-              <circle cx="60" cy="9" r="2.7" />
-              <circle cx="103" cy="60" r="2.5" />
-              <circle cx="60" cy="111" r="2.7" />
-              <circle cx="17" cy="60" r="2.5" />
-            </g>
+            <circle
+              cx="60"
+              cy="60"
+              r="39"
+              fill="none"
+              stroke="url(#g24)"
+              stroke-width="7"
+              stroke-linecap="round"
+              stroke-dasharray="34 12 8 12"
+              style="
+                animation: gl-orbit 1.8s linear infinite;
+                transform-origin:60px 60px;
+              "
+            />
 
-            <g class="gl-core">
-              <path class="gl-core-shape" d="M60 30 L88 79 H32 Z" />
-              <path class="gl-core-cut" d="M60 45 L69 62 H51 Z" />
-            </g>
+            <path
+              d="M60 38 L77 68 H43 Z"
+              fill="url(#g24)"
+              style="
+                animation: gl-core-pulse 1.5s ease-in-out infinite;
+                transform-origin:60px 60px;
+              "
+            />
 
           </svg>
 
+          <div class="variant-name">24px</div>
+
         </div>
 
-        <div class="size-label">
-          24px
-        </div>
 
-      </div>
+        <!-- 32px -->
 
-
-
-      <!-- 32px -->
-
-      <div class="size-card">
-
-        <div class="size-preview">
+        <div class="variant">
 
           <svg
-            class="gl-spinner"
             width="32"
             height="32"
             viewBox="0 0 120 120"
-            role="img"
-            aria-label="32px GenLayer spinner"
+            aria-label="32px spinner"
           >
 
-            <circle class="gl-orbit gl-orbit-a" cx="60" cy="60" r="39" />
-            <circle class="gl-orbit gl-orbit-b" cx="60" cy="60" r="31" />
-            <circle class="gl-orbit gl-orbit-c" cx="60" cy="60" r="23" />
+            <defs>
+              <linearGradient id="g32">
+                <stop offset="0%" stop-color="#18C8FF"/>
+                <stop offset="100%" stop-color="#9B5CFF"/>
+              </linearGradient>
+            </defs>
 
-            <g class="gl-particles">
-              <circle cx="60" cy="9" r="2.7" />
-              <circle cx="103" cy="60" r="2.5" />
-              <circle cx="60" cy="111" r="2.7" />
-              <circle cx="17" cy="60" r="2.5" />
-            </g>
+            <circle
+              cx="60"
+              cy="60"
+              r="39"
+              fill="none"
+              stroke="url(#g32)"
+              stroke-width="5"
+              stroke-linecap="round"
+              stroke-dasharray="34 12 8 12"
+              style="
+                animation: gl-orbit 1.8s linear infinite;
+                transform-origin:60px 60px;
+              "
+            />
 
-            <g class="gl-core">
-              <path class="gl-core-shape" d="M60 30 L88 79 H32 Z" />
-              <path class="gl-core-cut" d="M60 45 L69 62 H51 Z" />
-            </g>
+            <path
+              d="M60 35 L80 70 H40 Z"
+              fill="url(#g32)"
+              style="
+                animation: gl-core-pulse 1.5s ease-in-out infinite;
+                transform-origin:60px 60px;
+              "
+            />
 
           </svg>
 
+          <div class="variant-name">32px</div>
+
         </div>
 
-        <div class="size-label">
-          32px
-        </div>
 
-      </div>
+        <!-- 64px -->
 
-
-
-      <!-- 64px -->
-
-      <div class="size-card">
-
-        <div class="size-preview">
+        <div class="variant">
 
           <svg
-            class="gl-spinner"
             width="64"
             height="64"
             viewBox="0 0 120 120"
-            role="img"
-            aria-label="64px GenLayer spinner"
+            aria-label="64px spinner"
           >
 
-            <circle class="gl-orbit gl-orbit-a" cx="60" cy="60" r="39" />
-            <circle class="gl-orbit gl-orbit-b" cx="60" cy="60" r="31" />
-            <circle class="gl-orbit gl-orbit-c" cx="60" cy="60" r="23" />
+            <defs>
+              <linearGradient id="g64">
+                <stop offset="0%" stop-color="#18C8FF"/>
+                <stop offset="55%" stop-color="#3E7BFF"/>
+                <stop offset="100%" stop-color="#9B5CFF"/>
+              </linearGradient>
+            </defs>
 
-            <g class="gl-particles">
-              <circle cx="60" cy="9" r="2.7" />
-              <circle cx="103" cy="60" r="2.5" />
-              <circle cx="60" cy="111" r="2.7" />
-              <circle cx="17" cy="60" r="2.5" />
-            </g>
+            <circle
+              cx="60"
+              cy="60"
+              r="39"
+              fill="none"
+              stroke="url(#g64)"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-dasharray="34 12 8 12"
+              style="
+                animation: gl-orbit 1.8s linear infinite;
+                transform-origin:60px 60px;
+              "
+            />
 
-            <g class="gl-core">
-              <path class="gl-core-shape" d="M60 30 L88 79 H32 Z" />
-              <path class="gl-core-cut" d="M60 45 L69 62 H51 Z" />
-            </g>
+            <circle
+              cx="60"
+              cy="60"
+              r="30"
+              fill="none"
+              stroke="#18C8FF"
+              stroke-width="1.5"
+              opacity=".55"
+              stroke-dasharray="4 8"
+              style="
+                animation: gl-orbit-reverse 2.43s linear infinite;
+                transform-origin:60px 60px;
+              "
+            />
+
+            <path
+              d="M60 30 L88 79 H32 Z"
+              fill="url(#g64)"
+              style="
+                animation: gl-core-pulse 1.5s ease-in-out infinite;
+                transform-origin:60px 60px;
+              "
+            />
+
+            <path
+              d="M60 45 L69 62 H51 Z"
+              fill="#06101f"
+            />
 
           </svg>
 
+          <div class="variant-name">64px</div>
+
         </div>
 
-        <div class="size-label">
-          64px
-        </div>
 
-      </div>
+        <!-- 128px -->
 
-
-
-      <!-- 128px -->
-
-      <div class="size-card">
-
-        <div class="size-preview">
+        <div class="variant">
 
           <svg
-            class="gl-spinner"
             width="128"
             height="128"
             viewBox="0 0 120 120"
-            role="img"
-            aria-label="128px GenLayer spinner"
+            aria-label="128px spinner"
           >
 
-            <circle class="gl-orbit gl-orbit-a" cx="60" cy="60" r="39" />
-            <circle class="gl-orbit gl-orbit-b" cx="60" cy="60" r="31" />
-            <circle class="gl-orbit gl-orbit-c" cx="60" cy="60" r="23" />
+            <defs>
+              <linearGradient id="g128">
+                <stop offset="0%" stop-color="#18C8FF"/>
+                <stop offset="55%" stop-color="#3E7BFF"/>
+                <stop offset="100%" stop-color="#9B5CFF"/>
+              </linearGradient>
+            </defs>
 
-            <g class="gl-particles">
-              <circle cx="60" cy="9" r="2.7" />
-              <circle cx="103" cy="60" r="2.5" />
-              <circle cx="60" cy="111" r="2.7" />
-              <circle cx="17" cy="60" r="2.5" />
-            </g>
+            <circle
+              cx="60"
+              cy="60"
+              r="39"
+              fill="none"
+              stroke="url(#g128)"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-dasharray="34 12 8 12"
+              style="
+                animation: gl-orbit 1.8s linear infinite;
+                transform-origin:60px 60px;
+              "
+            />
 
-            <g class="gl-core">
-              <path class="gl-core-shape" d="M60 30 L88 79 H32 Z" />
-              <path class="gl-core-cut" d="M60 45 L69 62 H51 Z" />
-            </g>
+            <circle
+              cx="60"
+              cy="60"
+              r="31"
+              fill="none"
+              stroke="url(#g128)"
+              stroke-width="1.4"
+              opacity=".55"
+              stroke-dasharray="5 10"
+              style="
+                animation: gl-orbit-reverse 2.43s linear infinite;
+                transform-origin:60px 60px;
+              "
+            />
+
+            <circle
+              cx="60"
+              cy="9"
+              r="3"
+              fill="#18C8FF"
+            />
+
+            <circle
+              cx="103"
+              cy="60"
+              r="3"
+              fill="#9B5CFF"
+            />
+
+            <circle
+              cx="60"
+              cy="111"
+              r="3"
+              fill="#18C8FF"
+            />
+
+            <circle
+              cx="17"
+              cy="60"
+              r="3"
+              fill="#9B5CFF"
+            />
+
+            <path
+              d="M60 30 L88 79 H32 Z"
+              fill="url(#g128)"
+              style="
+                animation: gl-core-pulse 1.5s ease-in-out infinite;
+                transform-origin:60px 60px;
+              "
+            />
+
+            <path
+              d="M60 45 L69 62 H51 Z"
+              fill="#06101f"
+            />
 
           </svg>
 
-        </div>
+          <div class="variant-name">128px</div>
 
-        <div class="size-label">
-          128px
         </div>
 
       </div>
@@ -584,12 +955,86 @@
     </section>
 
 
-    <footer class="footer">
-      Built as an original community contribution for GenLayer
-      • SVG + CSS • Responsive
+    <!-- INTEGRATION INFORMATION -->
+
+    <section class="integration">
+
+      <article class="info-card">
+
+        <h2>Web Ready</h2>
+
+        <p>
+          The spinner is designed to work without external dependencies
+          and can be integrated into modern web interfaces using SVG and CSS.
+        </p>
+
+        <div class="code-box">
+
+<code>&lt;div class="gl-spinner"&gt;
+  &lt;!-- GenLayer Spinner SVG --&gt;
+&lt;/div&gt;</code>
+
+        </div>
+
+      </article>
+
+
+      <article class="info-card">
+
+        <h2>Designed for GenLayer</h2>
+
+        <p>
+          The orbital motion represents an intelligent network core,
+          while the blue and purple gradient reflects the GenLayer visual
+          identity.
+        </p>
+
+        <div class="code-box">
+
+<code>SVG + CSS
+✓ Dark Theme
+✓ Light Theme
+✓ 24 / 32 / 64 / 128px
+✓ Infinite Animation
+✓ Responsive</code>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+      Built as an original community contribution for
+      <strong>GenLayer</strong>
+      · SVG + CSS
+      · Responsive
+      · No external dependencies
+
     </footer>
 
   </main>
+
+
+  <!-- Reduced motion support -->
+
+  <style>
+
+    @media (prefers-reduced-motion: reduce) {
+
+      svg circle,
+      svg path,
+      svg g {
+        animation: none !important;
+      }
+
+    }
+
+  </style>
 
 </body>
 </html>
