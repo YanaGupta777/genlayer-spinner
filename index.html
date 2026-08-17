@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GenLayer Intelligent Core Spinner — Demo</title>
+<link rel="stylesheet" href="../src/spinner.css">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:#07111f;color:#fff}
+.wrap{max-width:900px;margin:auto;padding:48px 24px}
+h1{margin:0 0 10px;font-size:clamp(28px,5vw,48px)}
+p{color:#aab8ca}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.card{min-height:260px;border-radius:20px;display:grid;place-items:center;position:relative}
+.dark{background:#050b15;border:1px solid #18324f}.light{background:#f7faff;color:#10213b}
+.label{position:absolute;top:18px;left:20px;font-weight:700}
+.loader{display:grid;place-items:center;gap:12px}
+.spinner--lg{width:96px;height:96px}.spinner--sm{width:32px;height:32px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<h1>GenLayer Intelligent Core Spinner</h1>
+<p>Lightweight, responsive, infinitely looping SVG/CSS loading component.</p>
+<div class="grid">
+<section class="card dark"><span class="label">Dark theme</span>
+<div class="loader"><svg class="gl-spinner gl-spinner--dark spinner--lg" viewBox="0 0 120 120" aria-label="Loading">
+  <defs>
+    <linearGradient id="glGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18B6FF"/>
+      <stop offset="55%" stop-color="#4D7CFF"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <circle class="gl-orbit gl-orbit-1" cx="60" cy="60" r="43"/>
+  <circle class="gl-orbit gl-orbit-2" cx="60" cy="60" r="34"/>
+  <g class="gl-nodes">
+    <circle cx="60" cy="10" r="4"/>
+    <circle cx="103" cy="60" r="4"/>
+    <circle cx="60" cy="110" r="4"/>
+    <circle cx="17" cy="60" r="4"/>
+  </g>
+  <g class="gl-core">
+    <path d="M60 29 L88 78 H32 Z"/>
+    <path d="M60 45 L69 62 H51 Z"/>
+  </g>
+
+</svg><span>Loading…</span></div></section>
+<section class="card light"><span class="label">Light theme</span>
+<div class="loader"><svg class="gl-spinner gl-spinner--light spinner--lg" viewBox="0 0 120 120" aria-label="Loading">
+  <defs>
+    <linearGradient id="glGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18B6FF"/>
+      <stop offset="55%" stop-color="#4D7CFF"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <circle class="gl-orbit gl-orbit-1" cx="60" cy="60" r="43"/>
+  <circle class="gl-orbit gl-orbit-2" cx="60" cy="60" r="34"/>
+  <g class="gl-nodes">
+    <circle cx="60" cy="10" r="4"/>
+    <circle cx="103" cy="60" r="4"/>
+    <circle cx="60" cy="110" r="4"/>
+    <circle cx="17" cy="60" r="4"/>
+  </g>
+  <g class="gl-core">
+    <path d="M60 29 L88 78 H32 Z"/>
+    <path d="M60 45 L69 62 H51 Z"/>
+  </g>
+
+</svg><span>Loading…</span></div></section>
+</div>
+</main>
+</body>
+</html>

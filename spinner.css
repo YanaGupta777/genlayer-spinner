@@ -1,0 +1,65 @@
+/* GenLayer Intelligent Core Spinner
+   Original community concept: orbital nodes + intelligent core.
+   No external dependencies. Scales from 24px to 128px+. */
+
+.gl-spinner {
+  width: 64px;
+  height: 64px;
+  display: block;
+  overflow: visible;
+  --gl-speed: 1.8s;
+  --gl-accent: #18B6FF;
+  --gl-accent-2: #8B5CF6;
+}
+
+.gl-orbit {
+  fill: none;
+  stroke: url(#glGradient);
+  stroke-linecap: round;
+  transform-origin: 60px 60px;
+}
+
+.gl-orbit-1 {
+  stroke-width: 2.4;
+  stroke-dasharray: 34 12 8 12;
+  animation: gl-orbit var(--gl-speed) linear infinite;
+}
+
+.gl-orbit-2 {
+  stroke-width: 1.4;
+  stroke-dasharray: 5 10;
+  opacity: .55;
+  animation: gl-orbit-reverse calc(var(--gl-speed) * 1.35) linear infinite;
+}
+
+.gl-nodes {
+  fill: var(--gl-accent);
+  filter: drop-shadow(0 0 4px var(--gl-accent));
+  transform-origin: 60px 60px;
+  animation: gl-nodes calc(var(--gl-speed) * 1.1) ease-in-out infinite;
+}
+
+.gl-core {
+  fill: url(#glGradient);
+  transform-origin: 60px 60px;
+  animation: gl-core-pulse 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px rgba(24,182,255,.45));
+}
+
+@keyframes gl-orbit { to { transform: rotate(360deg); } }
+@keyframes gl-orbit-reverse { to { transform: rotate(-360deg); } }
+@keyframes gl-nodes {
+  0%,100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.035); }
+}
+@keyframes gl-core-pulse {
+  0%,100% { transform: scale(.94); opacity: .82; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-orbit-1, .gl-orbit-2, .gl-nodes, .gl-core { animation: none; }
+}
+
+.gl-spinner--light { --gl-accent: #147CFF; }
+.gl-spinner--dark { --gl-accent: #22C7FF; }

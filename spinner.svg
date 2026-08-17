@@ -1,0 +1,21 @@
+<svg class="gl-spinner" viewBox="0 0 120 120" role="img" aria-label="Loading">
+  <defs>
+    <linearGradient id="glGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18B6FF"/>
+      <stop offset="55%" stop-color="#4D7CFF"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <circle class="gl-orbit gl-orbit-1" cx="60" cy="60" r="43"/>
+  <circle class="gl-orbit gl-orbit-2" cx="60" cy="60" r="34"/>
+  <g class="gl-nodes">
+    <circle cx="60" cy="10" r="4"/>
+    <circle cx="103" cy="60" r="4"/>
+    <circle cx="60" cy="110" r="4"/>
+    <circle cx="17" cy="60" r="4"/>
+  </g>
+  <g class="gl-core">
+    <path d="M60 29 L88 78 H32 Z"/>
+    <path d="M60 45 L69 62 H51 Z"/>
+  </g>
+</svg>
