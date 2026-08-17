@@ -1,75 +1,189 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GenLayer Intelligent Core Spinner — Demo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GenLayer Intelligent Core Spinner</title>
+
 <link rel="stylesheet" href="../src/spinner.css">
+
 <style>
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:#07111f;color:#fff}
-.wrap{max-width:900px;margin:auto;padding:48px 24px}
-h1{margin:0 0 10px;font-size:clamp(28px,5vw,48px)}
-p{color:#aab8ca}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
-.card{min-height:260px;border-radius:20px;display:grid;place-items:center;position:relative}
-.dark{background:#050b15;border:1px solid #18324f}.light{background:#f7faff;color:#10213b}
-.label{position:absolute;top:18px;left:20px;font-weight:700}
-.loader{display:grid;place-items:center;gap:12px}
-.spinner--lg{width:96px;height:96px}.spinner--sm{width:32px;height:32px}
-@media(max-width:650px){.grid{grid-template-columns:1fr}}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Inter,system-ui,sans-serif;
+  background:#07111f;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  padding:32px;
+}
+.container{max-width:920px;width:100%}
+h1{
+  text-align:center;
+  margin:0;
+  font-size:42px;
+}
+p{
+  text-align:center;
+  color:#a9b7ca;
+  margin:14px auto 40px;
+  max-width:640px;
+  line-height:1.7;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+.card{
+  border-radius:22px;
+  padding:28px;
+  text-align:center;
+  position:relative;
+}
+.dark{
+  background:#050b15;
+  border:1px solid #18324f;
+}
+.light{
+  background:#f7faff;
+  color:#10213b;
+}
+.label{
+  position:absolute;
+  top:16px;
+  left:18px;
+  font-size:12px;
+  font-weight:700;
+  opacity:.7;
+}
+.demo-spinner{
+  width:96px;
+  height:96px;
+  margin:20px auto;
+}
+.caption{
+  font-size:14px;
+  opacity:.7;
+}
+.footer{
+  text-align:center;
+  margin-top:34px;
+  color:#7f92aa;
+  font-size:14px;
+}
 </style>
 </head>
+
 <body>
-<main class="wrap">
+
+<div class="container">
+
 <h1>GenLayer Intelligent Core Spinner</h1>
-<p>Lightweight, responsive, infinitely looping SVG/CSS loading component.</p>
+
+<p>
+A premium SVG + CSS loading spinner designed for GenLayer Portal loading
+states. Lightweight, infinitely looping and responsive.
+</p>
+
 <div class="grid">
-<section class="card dark"><span class="label">Dark theme</span>
-<div class="loader"><svg class="gl-spinner gl-spinner--dark spinner--lg" viewBox="0 0 120 120" aria-label="Loading">
+
+<div class="card dark">
+<div class="label">DARK THEME</div>
+
+<svg class="gl-spinner gl-spinner--dark demo-spinner" viewBox="0 0 120 120">
   <defs>
-    <linearGradient id="glGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#18B6FF"/>
-      <stop offset="55%" stop-color="#4D7CFF"/>
-      <stop offset="100%" stop-color="#8B5CF6"/>
+    <linearGradient id="gl-blue-purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#18C8FF"/>
+      <stop offset="55%" stop-color="#3E7BFF"/>
+      <stop offset="100%" stop-color="#9B5CFF"/>
     </linearGradient>
+    <filter id="gl-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <circle class="gl-orbit gl-orbit-1" cx="60" cy="60" r="43"/>
-  <circle class="gl-orbit gl-orbit-2" cx="60" cy="60" r="34"/>
-  <g class="gl-nodes">
-    <circle cx="60" cy="10" r="4"/>
-    <circle cx="103" cy="60" r="4"/>
-    <circle cx="60" cy="110" r="4"/>
-    <circle cx="17" cy="60" r="4"/>
-  </g>
-  <g class="gl-core">
-    <path d="M60 29 L88 78 H32 Z"/>
-    <path d="M60 45 L69 62 H51 Z"/>
+
+  <g class="gl-orbit-system">
+    <circle class="gl-ring gl-ring-a" cx="60" cy="60" r="39"/>
+    <circle class="gl-ring gl-ring-b" cx="60" cy="60" r="31"/>
+    <circle class="gl-ring gl-ring-c" cx="60" cy="60" r="23"/>
   </g>
 
-</svg><span>Loading…</span></div></section>
-<section class="card light"><span class="label">Light theme</span>
-<div class="loader"><svg class="gl-spinner gl-spinner--light spinner--lg" viewBox="0 0 120 120" aria-label="Loading">
-  <defs>
-    <linearGradient id="glGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#18B6FF"/>
-      <stop offset="55%" stop-color="#4D7CFF"/>
-      <stop offset="100%" stop-color="#8B5CF6"/>
-    </linearGradient>
-  </defs>
-  <circle class="gl-orbit gl-orbit-1" cx="60" cy="60" r="43"/>
-  <circle class="gl-orbit gl-orbit-2" cx="60" cy="60" r="34"/>
-  <g class="gl-nodes">
-    <circle cx="60" cy="10" r="4"/>
-    <circle cx="103" cy="60" r="4"/>
-    <circle cx="60" cy="110" r="4"/>
-    <circle cx="17" cy="60" r="4"/>
-  </g>
-  <g class="gl-core">
-    <path d="M60 29 L88 78 H32 Z"/>
-    <path d="M60 45 L69 62 H51 Z"/>
+  <g class="gl-particles" filter="url(#gl-glow)">
+    <circle cx="60" cy="9" r="2.7"/>
+    <circle cx="103" cy="60" r="2.5"/>
+    <circle cx="60" cy="111" r="2.7"/>
+    <circle cx="17" cy="60" r="2.5"/>
+    <circle cx="87" cy="33" r="2.1"/>
+    <circle cx="33" cy="87" r="2.1"/>
   </g>
 
-</svg><span>Loading…</span></div></section>
+  <g class="gl-core" filter="url(#gl-glow)">
+    <path class="gl-core-shape" d="M60 30 L88 79 H32 Z"/>
+    <path class="gl-core-cut" d="M60 45 L69 62 H51 Z"/>
+  </g>
+</svg>
+
+<div class="caption">Smooth Infinite Orbit</div>
 </div>
-</main>
+
+<div class="card light">
+<div class="label">LIGHT THEME</div>
+
+<svg class="gl-spinner gl-spinner--light demo-spinner" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="gl-blue-purple-2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#147CFF"/>
+      <stop offset="55%" stop-color="#4D7CFF"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <filter id="gl-glow-2" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g class="gl-orbit-system">
+    <circle class="gl-ring gl-ring-a" cx="60" cy="60" r="39" stroke="url(#gl-blue-purple-2)"/>
+    <circle class="gl-ring gl-ring-b" cx="60" cy="60" r="31" stroke="url(#gl-blue-purple-2)"/>
+    <circle class="gl-ring gl-ring-c" cx="60" cy="60" r="23" stroke="url(#gl-blue-purple-2)"/>
+  </g>
+
+  <g class="gl-particles" filter="url(#gl-glow-2)">
+    <circle cx="60" cy="9" r="2.7"/>
+    <circle cx="103" cy="60" r="2.5"/>
+    <circle cx="60" cy="111" r="2.7"/>
+    <circle cx="17" cy="60" r="2.5"/>
+    <circle cx="87" cy="33" r="2.1"/>
+    <circle cx="33" cy="87" r="2.1"/>
+  </g>
+
+  <g class="gl-core" filter="url(#gl-glow-2)">
+    <path d="M60 30 L88 79 H32 Z" fill="url(#gl-blue-purple-2)"/>
+    <path d="M60 45 L69 62 H51 Z" fill="#F7FAFF"/>
+  </g>
+</svg>
+
+<div class="caption">Portal Ready UI</div>
+</div>
+
+</div>
+
+<div class="footer">
+Built as an original community contribution for GenLayer • SVG + CSS • Responsive
+</div>
+
+</div>
+
 </body>
 </html>
